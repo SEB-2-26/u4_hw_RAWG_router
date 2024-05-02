@@ -29,3 +29,4 @@ const GameDetails = (props) => {
 }
 
 export default GameDetails
+ 
