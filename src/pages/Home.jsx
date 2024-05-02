@@ -17,7 +17,7 @@ const Home = () => {
 
   const getSearchResults = async (e) => {
     e.preventDefault()
-    const response = await axios.get(`https://api.rawg.io/api/games?key=${import.meta.env.VITE_RAWG_KEY}&search=${searchQuery}`)
+    const response = await axios.get(`https://api.rawg.io/api/games?search=${searchQuery}&key=${import.meta.env.VITE_RAWG_KEY}`)
     setSearchResults(response.data.results)
     toggleSearched(true)
     setSearchQuery('')
@@ -35,17 +35,30 @@ const Home = () => {
   return (
     <div>
       <div className="search">
-        <h2>Search Results</h2>
+       
         <section className="search-results container-grid">
-          <Search onChange={handleChange} onSubmit={getSearchResults}/>
+        <div>  
+          <Search onChange={handleChange} onSubmit={getSearchResults} value={searchQuery}/>
+        </div>         
+          {
+          !!searchResults === true ? (
+            searchResults.map((result) => (
+            <GameCard 
+              name={result.name}
+              rating={result.rating}
+              image={result.background_image}
+            />))) : (<p></p>) }
         </section>
       </div>
+
+
       <div className="genres">
         <h2>Genres</h2>
         <section className="container-grid">
             {
             genres.map((genre) => (
                 <GenreCard 
+                  id={genre.id}
                   name={genre.name}
                   gameCount={genre.games_count}
                   image={genre.image_background}
