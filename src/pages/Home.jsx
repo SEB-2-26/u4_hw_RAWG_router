@@ -1,4 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import Search from '../components/Search'
+import GameCard from '../components/GameCard'
+import GenreCard from '../components/GenreCard'
 
 const Home = () => {
   const [genres, setGenres] = useState([])
@@ -7,29 +11,47 @@ const Home = () => {
   const [searchQuery, setSearchQuery] = useState('')
 
   const getGenres = async () => {
-
+    const response = await axios.get(`https://api.rawg.io/api/genres?key=${import.meta.env.VITE_RAWG_KEY}`)
+    setGenres(response.data.results)
   }
 
   const getSearchResults = async (e) => {
     e.preventDefault()
+    const response = await axios.get(`https://api.rawg.io/api/games?key=${import.meta.env.VITE_RAWG_KEY}&search=${searchQuery}`)
+    setSearchResults(response.data.results)
+    toggleSearched(true)
+    setSearchQuery('')
   }
 
   const handleChange = (event) => {
-
+    const search = event.target.value
+    setSearchQuery(search)
   }
+
+  useEffect(()=> {
+    getGenres()
+  }, [])
 
   return (
     <div>
       <div className="search">
         <h2>Search Results</h2>
         <section className="search-results container-grid">
-
+          <Search onChange={handleChange} onSubmit={getSearchResults}/>
         </section>
       </div>
       <div className="genres">
         <h2>Genres</h2>
         <section className="container-grid">
-
+            {
+            genres.map((genre) => (
+                <GenreCard 
+                  name={genre.name}
+                  gameCount={genre.games_count}
+                  image={genre.image_background}
+                />
+                  
+            ))}
         </section>
       </div>
     </div>
