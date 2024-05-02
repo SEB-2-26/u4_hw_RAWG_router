@@ -27,7 +27,7 @@ const Home = () => {
     e.preventDefault();
     toggleSearched(true);
     const response = await axios.get(
-      "https://api.rawg.io/api/games?search=${searchQuery}",
+      `https://api.rawg.io/api/games?search=${searchQuery}`,
       {
         params: {
           key: import.meta.env.VITE_RAWG_KEY,
@@ -58,12 +58,14 @@ const Home = () => {
         <section className="search-results container-grid">
           {searched &&
             searchResults.map((game) => {
-              <GameCard
-                key={game.id}
-                name={game.name}
-                image={game.image}
-                rating={game.rating}
-              />;
+              return (
+                <GameCard
+                  key={game.id}
+                  name={game.name}
+                  image={game.image}
+                  rating={game.rating}
+                />
+              );
             })}
         </section>
       </div>
@@ -71,7 +73,9 @@ const Home = () => {
         <h2>Genres</h2>
         <section className="container-grid">
           {genres.map((genre) => {
-            <GenreCard key={genre.id} name={genre.name} image={genre.image} />;
+            return (
+              <GenreCard key={genre.id} name={genre.name} image={genre.image} />
+            );
           })}
         </section>
       </div>
