@@ -1,9 +1,16 @@
 const Search = () => {
 
   return (
-    <form>
-
-    </form>
+    <form onSubmit={props.onSubmit}>
+    <input
+      type="text"
+      name="search"
+      value={props.value}
+      placeholder="Search Games"
+      onChange={props.onChange}
+    />
+     <button type="submit">Search</button>
+  </form>
   )
 }
 

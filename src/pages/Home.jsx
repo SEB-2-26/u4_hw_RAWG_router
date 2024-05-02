@@ -1,4 +1,8 @@
 import { useState } from 'react'
+import Search from './components/Search'
+import axios from ''
+import GameCard from './components/GameCard'
+import GenreCard from './components/GenreCard'
 
 const Home = () => {
   const [genres, setGenres] = useState([])
