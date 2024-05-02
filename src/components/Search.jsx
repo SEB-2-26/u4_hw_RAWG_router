@@ -1,8 +1,10 @@
-const Search = () => {
+
+function Search({onSubmit, handleChange, value}){
 
   return (
-    <form>
-
+    <form onSubmit={(e)=>(onSubmit(e))}>
+    <input type="text" name="search" value={value} placeholder="Search Games" onChange={(e)=>(handleChange(e))} />
+    <button type="submit">Search</button>
     </form>
   )
 }
