@@ -35,11 +35,12 @@ const Home = () => {
   return (
     <div>
       <div className="search">
-       
-        <section className="search-results container-grid">
         <div>  
           <Search onChange={handleChange} onSubmit={getSearchResults} value={searchQuery}/>
-        </div>         
+        </div>
+        {searchResults.length != 0 ? <h2>Search Results</h2> : ""}   
+        <section className="search-results container-grid">
+                
           {
           !!searchResults === true ? (
             searchResults.map((result) => (
