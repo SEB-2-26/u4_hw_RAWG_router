@@ -5,7 +5,7 @@ const ViewGames = (props) => {
   const [games, setGames] = useState([])
 
   const getGamesByGenre = async () => {
-    
+
   }
 
   return (

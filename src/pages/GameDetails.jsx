@@ -4,7 +4,7 @@ const GameDetails = (props) => {
   const [gameDetails, setGameDetails] = useState({})
 
   useEffect(() => {
-    
+
   }, [gameId])
 
   return (
