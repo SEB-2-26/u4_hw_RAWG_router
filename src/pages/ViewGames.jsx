@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import GameCard from "../components/GameCard";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const ViewGames = () => {
   const [games, setGames] = useState([]);
   const { genreId } = useParams();
   const API_KEY = import.meta.env.VITE_RAWG_KEY;
+  const navigate = useNavigate();
+
+  const handleGameClick = (id) => {
+    navigate(`/games/details/${id}`);
+  };
 
   useEffect(() => {
     const getGamesByGenre = async () => {
@@ -30,6 +35,7 @@ const ViewGames = () => {
           name={game.name}
           image={game.background_image}
           rating={game.rating}
+          onClick={() => handleGameClick(game.id)}
         />
       ))}
     </div>

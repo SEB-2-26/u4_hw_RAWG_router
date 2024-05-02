@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [genres, setGenres] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
-  const [searched, setSearched] = useState(false);
+  const [searched, toggleSearched] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
@@ -29,7 +29,8 @@ const Home = () => {
     }
   };
 
-  const getSearchResults = async () => {
+  const getSearchResults = async (e) => {
+    e.preventDefault();
     try {
       const response = await axios.get(
         `https://api.rawg.io/api/games?search=${searchQuery}`,
@@ -39,9 +40,9 @@ const Home = () => {
           },
         }
       );
-      console.log(response.data);
+
       setSearchResults(response.data.results);
-      setSearched(true);
+      toggleSearched(true);
       setSearchQuery("");
     } catch (error) {
       console.error(error);
