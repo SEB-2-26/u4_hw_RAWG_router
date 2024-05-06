@@ -1,10 +1,16 @@
 const Search = () => {
-
   return (
-    <form>
-
+    <form onSubmit={props.onSubmit}>
+      <input
+        type="text"
+        name="search"
+        value={props.value}
+        placeholder="Search Games"
+        onChange={props.onChange}
+      ></input>
+      <button type="submit">Submit</button>
     </form>
-  )
-}
+  );
+};
 
-export default Search
+export default Search;
