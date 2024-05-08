@@ -1,4 +1,4 @@
-const GameCard = () => {
+const GameCard = (props) => {
   return (
     <div className="card game-card" onClick={props.onClick}>
       <div className="img-wrapper">

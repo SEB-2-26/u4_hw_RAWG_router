@@ -4,7 +4,8 @@ import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import GameDetails from "./pages/GameDetails";
 import Home from "./pages/Home";
-// Other component imports here
+import About from "./pages/About";
+import ViewGames from "./pages/ViewGames";
 
 function App() {
   return (
@@ -21,7 +22,5 @@ function App() {
     </div>
   );
 }
-
-//...
 
 export default App;

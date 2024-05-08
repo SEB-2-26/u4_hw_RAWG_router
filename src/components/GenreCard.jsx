@@ -1,12 +1,13 @@
-const GenreCard = () => {
+const GenreCard = (props) => {
+  const { image_background, games_count, name } = props.genre;
   return (
     <div className="card" onClick={props.onClick}>
       <div className="img-wrapper">
-        <img src={props.image} />
+        <img src={image_background} />
       </div>
       <div className="info-wrapper flex-col">
-        <h3>{props.name}</h3>
-        <p>{props.gamesCount}</p>
+        <h3>{name}</h3>
+        <p>{games_count}</p>
       </div>
     </div>
   );
